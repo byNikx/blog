@@ -16,11 +16,13 @@ import { LayoutService } from './services/layout/layout.service';
  */
 import { AppComponent } from './app.component';
 import { ContainerComponent } from './components/container/container.component';
+import { PostPreviewComponent } from './components/post/preview/post-preview/post-preview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContainerComponent
+    ContainerComponent,
+    PostPreviewComponent
   ],
   imports: [
     ... MAT_MODULES,
