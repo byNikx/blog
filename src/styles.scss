@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import 'reset';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import 'util';
 
 body{
@@ -23,6 +24,7 @@ a.linkified{
 
 nx-container{
 	display: block;
+	max-width: 1024px;
 	&.xs{
 		margin:.5rem auto;
 		width: 95%

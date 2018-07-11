@@ -6,9 +6,15 @@
 
     figure{
         &.post-image{
-            background-color: red;
-            width: 153px;
-            height: 103px;
+            background-color: rgba(0, 0, 0, .1);
+            min-height: 300px;
+            width: 100%;
+
+            img{
+                display: block;
+                width: 100%;
+                height: auto;
+            }
         }
     }
     h1{

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import * as faker from 'faker';
 
 @Component({
-  selector: 'nx-post-preview',
-  templateUrl: './post-preview.component.html',
-  styleUrls: ['./post-preview.component.scss']
+  selector: 'nx-post-preview-with-image',
+  templateUrl: './post-preview-with-image.component.html',
+  styleUrls: ['./post-preview-with-image.component.scss']
 })
-export class PostPreviewComponent implements OnInit {
+export class PostPreviewWithImageComponent implements OnInit {
 
   post: any;
   constructor() { }

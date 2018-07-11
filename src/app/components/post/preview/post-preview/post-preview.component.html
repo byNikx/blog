@@ -1,8 +1,22 @@
-<article fxLayout="row" style="background-color: cyan">
-  <section fxFlex style="background: pink;">
-    
+<article fxLayout="column" fxLayout.gt-sm="row" class="mat-typography" fxLayoutGap="2rem">
+
+  <section fxFlex fxFlex.lt-sm="none" fxLayoutGap="1rem" fxLayout="column" flex-order="2" flex-order.gt-sm="1">
+    <section fxLayout="row" fxLayoutAlign="space-between center">
+      <section class="user-info" fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="start center">
+        <figure class="avatar" [ngStyle]="{'background-image':'url(' + post.avatar + ')'}"></figure>
+        <section fxLayout="column">
+          <h4 class="name" [innerText]="post.name"></h4>
+          <span class="mat-caption">2 days ago</span>
+        </section>
+      </section>
+      <button mat-icon-button>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </section>
+    <h1 class="title" [innerText]="post.company.catchPhrase"></h1>
+    <p class="mat-body-1 text">Ea qui cupidatat duis velit non. Laboris id amet magna, Ea qui cupidatat duis velit non. Laboris id amet magna.. </p>
   </section>
-  <figure style="background-color: teal;">
-    <img src="https://cdn-images-1.medium.com/fit/c/152/156/1*cyE7Za37DLg8N-m4IUhJig.jpeg" alt="">
-  </figure>
+
+  <figure flex-order="1" flex-order.gt-sm="2" class="post-image" style="background-image: url(https://cdn-images-1.medium.com/fit/c/152/156/1*eEkW95WW81p6zClDK7s4Fw.jpeg)"></figure>
+
 </article>

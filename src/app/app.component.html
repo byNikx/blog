@@ -1,15 +1,21 @@
 <mat-sidenav-container class="app-wrap">
-  <mat-sidenav mode="side" opened="true">Start</mat-sidenav>
+  <mat-sidenav mode="side" [opened]="layout.media.isActive('gt-sm')">Start</mat-sidenav>
   <mat-sidenav-content>
-    <nx-container>
-      <section fxLayout="row" fxLayoutGap="3rem">
-        <section style="background-color: teal" fxFlex>
-          <nx-post-preview></nx-post-preview>
+    <section fxLayout="column" fxLayoutGap="2rem">
+      <nx-container>
+        <h1 style="margin: 3rem auto 1.7rem" class="mat-display-3">Trending</h1>
+      </nx-container>
+      <mat-divider></mat-divider>
+      <nx-container>
+        <section fxLayout="row" fxLayoutGap.gt-sm="3rem" fxLayoutAlign="start start">
+          <section fxFlex fxLayout="column" fxLayoutGap="3.5rem">
+            <nx-post-preview-with-image></nx-post-preview-with-image>
+            <nx-post-preview class="ripple-surface" *ngFor="let i of [1,2,3,4,5,6,7,8,9]"></nx-post-preview>
+          </section>
+          <section fxFlex="300px" style="background-color: #e8e8e8; height: 300px;" fxHide fxShow.gt-sm>
+          </section>
         </section>
-        <section fxFlex="300px" style="background-color: cyan">
-          klj
-        </section>
-      </section>
-    </nx-container>
+      </nx-container>
+    </section>
   </mat-sidenav-content>
 </mat-sidenav-container>
