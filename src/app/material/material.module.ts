@@ -8,7 +8,7 @@ import {
 	MatGridListModule, MatFormFieldModule, MatTooltipModule,
 	MatMenuModule, MatProgressBarModule, MatChipsModule,
 	MatButtonToggleModule, MatInputModule, MatSlideToggleModule,
-	MatAutocompleteModule, MatPaginatorModule, MatBadgeModule 
+	MatAutocompleteModule, MatPaginatorModule, MatBadgeModule
 } from '@angular/material';
 
 export const MAT_MODULES = [

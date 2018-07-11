@@ -9,9 +9,9 @@
           <span class="mat-caption">2 days ago</span>
         </section>
       </section>
-      <button mat-icon-button>
-        <mat-icon>more_vert</mat-icon>
-      </button>
+      <mat-chip-list>
+          <mat-chip>Technology</mat-chip>
+        </mat-chip-list>
     </section>
     <section>
       <h1 class="title" [innerText]="post.company.catchPhrase"></h1>
@@ -22,5 +22,4 @@
   <figure flex-order="1" flex-order.gt-sm="2" class="post-image">
     <img src="https://cdn-images-1.medium.com/max/800/1*pRDcMwidr9b2K9FIGfe6Xw.png" alt="">
   </figure>
-
 </article>
