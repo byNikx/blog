@@ -24,9 +24,9 @@ export class AppComponent {
   }
 
   ngAfterViewInit() {
-    this.scrollService.getScrollAsStream(this.body).subscribe(e => {
-      console.log(e);
-    });
+    // this.scrollService.getScrollAsStream(this.body).subscribe(e => {
+    //   console.log(e);
+    // });
   }
 
 }
