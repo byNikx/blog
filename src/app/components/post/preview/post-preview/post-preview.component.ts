@@ -12,7 +12,13 @@ export class PostPreviewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.post = faker.helpers.contextualCard();
+    this.post = {
+      name: faker.internet.userName(),
+      avatar: faker.internet.avatar(),
+      text: faker.lorem.sentences(),
+      title: faker.lorem.sentence(),
+      poster: faker.image.image()
+    };
     //  console.log(this.post);
   }
 

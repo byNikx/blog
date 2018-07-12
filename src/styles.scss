@@ -21,7 +21,9 @@ a.linkified{
 		border-top:0;
 	}
 }
-
+mat-divider{
+	border-right: 1px solid rgba(0,0,0,.1);
+}
 nx-container{
 	display: block;
 	max-width: 1024px;

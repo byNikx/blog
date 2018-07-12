@@ -6,15 +6,19 @@
     left: 0;
 }
 mat-sidenav.left-side-drawer {
-    width: 250px;
+    width: 280px;
     border-right: 1px solid rgba(0,0,0,.1);
-    padding-right: 1rem;
     .user-info{
+        padding: 1rem;
         .active-avatar{
             width: 50px;
             height: 50px;
             border-radius: 25px;
             background-color: rgba(0,0,0,.1);
+            background-size: cover;
+        }
+        .active-name, .active-email{
+            margin-bottom: 0rem;
         }
     }
 
@@ -23,6 +27,12 @@ mat-sidenav.left-side-drawer {
             border-top-right-radius: 40px;
             border-bottom-right-radius: 40px;
             overflow: hidden;
+            margin-right: 1rem;
+
+            &.active{
+                background-color: rgba(red, .1);
+                color: red;
+            }
         }
     }
 }

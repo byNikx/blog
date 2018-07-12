@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import {
 	MatButtonModule, MatIconModule, MatToolbarModule,
 	MatListModule, MatCardModule, MatProgressSpinnerModule,
@@ -18,10 +19,10 @@ export const MAT_MODULES = [
 	MatTabsModule, MatSelectModule, MatSliderModule,
 	MatTableModule, MatExpansionModule,
 	MatSidenavModule, MatGridListModule, MatFormFieldModule,
-	MatSliderModule,MatMenuModule, MatTooltipModule, 
-	MatProgressBarModule, MatChipsModule, MatButtonToggleModule, 
+	MatSliderModule, MatMenuModule, MatTooltipModule,
+	MatProgressBarModule, MatChipsModule, MatButtonToggleModule,
 	MatInputModule, MatSlideToggleModule, MatAutocompleteModule,
-	MatPaginatorModule, MatBadgeModule
+	MatPaginatorModule, MatBadgeModule, ScrollDispatchModule
 ];
 
 // @NgModule({

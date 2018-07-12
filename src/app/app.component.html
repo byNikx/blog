@@ -1,35 +1,61 @@
 <mat-sidenav-container class="app-wrap">
   <mat-sidenav class="left-side-drawer" mode="side" [opened]="layout.media.isActive('gt-sm')">
+    <section class="user-info mat-typography" fxLayout="column" fxLayoutGap="1rem">
+      <section>
+        <figure class="active-avatar" style="background-image: url('https://avatars1.githubusercontent.com/u/16052650?s=460&v=4')"></figure>
+      </section>
+      <section>
+        <h2 class="active-name">Nikx Fabrizio</h2>
+        <h3 class="active-email">nikx.fabrizio@gmail.com</h3>
+      </section>
+    </section>
+    <mat-divider></mat-divider>
     <mat-nav-list>
-      <h1 matSubheader>General</h1>
+      <mat-list-item routerLink="/home" routerLinkActive="active">
+        <mat-icon matListIcon>home</mat-icon>
+        <span matLine>Home</span>
+      </mat-list-item>
+      <mat-list-item routerLink="/editor" routerLinkActive="active">
+        <mat-icon matListIcon>edit</mat-icon>
+        <span matLine>Editor</span>
+      </mat-list-item>
+      <mat-divider style="margin-top: .5rem;"></mat-divider>
+      <h1 matSubheader>Profile</h1>
+      <mat-list-item>
+        <mat-icon matListIcon>account_circle</mat-icon>
+        <span matLine>Profile</span>
+      </mat-list-item>
       <mat-list-item>
         <mat-icon matListIcon>folder</mat-icon>
-        <span matLine>My Files</span>
+        <span matLine>My Posts</span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon>favorite</mat-icon>
+        <span matLine>Favorite</span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon>bookmarks</mat-icon>
+        <span matLine>Bookmarks</span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon matListIcon>settings</mat-icon>
+        <span matLine>Settings</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <mat-icon matListIcon>power_settings_new</mat-icon>
+        <span matLine>Sign out</span>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar #topBar></mat-toolbar>
-    <section fxLayout="column" fxLayoutGap="2rem">
+  <mat-sidenav-content cdkScrollable>
+    <!-- <mat-toolbar #topBar>
       <nx-container>
-        <h1 style="margin: 3rem auto 1.7rem" class="mat-display-3">Technology</h1>
+        <nx-search-bar-top></nx-search-bar-top>
       </nx-container>
-      <mat-divider></mat-divider>
-      <nx-container>
-        <section fxLayout="row" fxLayoutGap.gt-sm="3rem" fxLayoutAlign="start start">
-          <section fxFlex fxLayout="column" fxLayoutGap="3rem">
-            <nx-post-preview-with-image></nx-post-preview-with-image>
-            <mat-divider></mat-divider>
-            <ng-template ngFor let-item [ngForOf]="[1,2,3,4,5,6,7,8,9]" let-isLast="last">
-              <nx-post-preview class="ripple-surface"></nx-post-preview>
-              <mat-divider *ngIf="!isLast"></mat-divider>
-            </ng-template>
-          </section>
-          <section fxFlex="300px" style="background-color: #e8e8e8; height: 300px;" fxHide fxShow.gt-sm>
-          </section>
-        </section>
-      </nx-container>
-    </section>
+    </mat-toolbar>
+    <mat-divider></mat-divider> -->
+    <router-outlet></router-outlet>
     <footer class="mat-typography">
     </footer>
   </mat-sidenav-content>

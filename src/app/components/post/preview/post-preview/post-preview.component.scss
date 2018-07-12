@@ -6,9 +6,10 @@
 
     figure{
         &.post-image{
-            background-color: red;
+            background-color:rgba(0,0,0,.1);
             width: 153px;
             height: 103px;
+            background-size: cover;
         }
     }
     h1{
