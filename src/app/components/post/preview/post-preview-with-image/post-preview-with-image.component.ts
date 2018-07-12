@@ -13,7 +13,7 @@ export class PostPreviewWithImageComponent implements OnInit {
 
   ngOnInit() {
     this.post = faker.helpers.contextualCard();
-    console.log(this.post);
+    //    console.log(this.post);
   }
 
 }
