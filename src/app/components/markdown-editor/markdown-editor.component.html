@@ -1,13 +1,80 @@
-<section fxLayout="row">
-  <section fxFlex style="height: 900px;">
-    <mat-toolbar>
-      <h1>Editor</h1>
-    </mat-toolbar>
+<section fxFill fxLayout="column">
+  <section fxFlex fxLayout="row">
+    <section fxFlex fxLayout="column">
+      <section>
+        <mat-toolbar>
+          <button mat-icon-button>
+            <mat-icon>format_bold</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>format_italic</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>format_quote</mat-icon>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-icon-button>
+            <mat-icon>format_list_bulleted</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>insert_link</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>remove_red_eye</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>help</mat-icon>
+          </button>
+        </mat-toolbar>
+      </section>
+      <section class="editor-panel">
+        <nx-container>
+          <p *ngFor="let i of [1,2,3,4,5,6,7,8,9,11,12,13,14,15]">Consequat deserunt eiusmod dolore id aliquip. Dolore velit reprehenderit nostrud ut culpa ea eu aute eu ex. Esse
+            exercitation nostrud ex quis quis irure enim non quis. Pariatur irure pariatur labore commodo sint veniam aliqua.
+            Esse culpa excepteur incididunt in ex nostrud nisi non laborum enim est id dolor ut. Exercitation proident cillum
+            sunt ullamco veniam nisi dolore elit id in nostrud est.</p>
+        </nx-container>
+      </section>
+    </section>
+    <mat-divider></mat-divider>
+    <section fxFlex fxLayout="column">
+      <section>
+        <mat-toolbar>
+          <button mat-icon-button>
+            <mat-icon>format_bold</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>format_italic</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>format_quote</mat-icon>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-icon-button>
+            <mat-icon>format_list_bulleted</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>insert_link</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>remove_red_eye</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>help</mat-icon>
+          </button>
+        </mat-toolbar>
+      </section>
+      <section class="editor-panel">
+        <nx-container>
+          <p *ngFor="let i of [1,2,3,4,5,6,7,8,9,11,12,13,14,15]">Consequat deserunt eiusmod dolore id aliquip. Dolore velit reprehenderit nostrud ut culpa ea eu aute eu ex. Esse
+            exercitation nostrud ex quis quis irure enim non quis. Pariatur irure pariatur labore commodo sint veniam aliqua.
+            Esse culpa excepteur incididunt in ex nostrud nisi non laborum enim est id dolor ut. Exercitation proident cillum
+            sunt ullamco veniam nisi dolore elit id in nostrud est.</p>
+        </nx-container>
+      </section>
+    </section>
   </section>
-  <mat-divider></mat-divider>
-  <section fxFlex>
-    <mat-toolbar>
-      <h1>Preview</h1>
-    </mat-toolbar>
-  </section>
+  <mat-toolbar>
+    <h1>Editor</h1>
+  </mat-toolbar>
 </section>
