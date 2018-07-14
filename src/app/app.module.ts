@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, forwardRef, APP_INITIALIZER, LOCALE_ID } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_MODULES } from './material/material.module';
 
 /**
@@ -22,6 +22,9 @@ import { SearchBarTopComponent } from './components/search/search-bar-top/search
 import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
+import { MarkdownPipe } from './components/markdown-editor/markdown.pipe';
+import { MarkdownPreviewDirective } from './components/markdown-editor/markdown-preview.directive';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +34,9 @@ import { HomeComponent } from './components/home/home.component';
     PostPreviewWithImageComponent,
     SearchBarTopComponent,
     MarkdownEditorComponent,
-    HomeComponent
+    HomeComponent,
+    MarkdownPipe,
+    MarkdownPreviewDirective
   ],
   imports: [
     ...MAT_MODULES,
@@ -39,7 +44,8 @@ import { HomeComponent } from './components/home/home.component';
     FlexLayoutModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [
     LayoutService

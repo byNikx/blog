@@ -2,8 +2,15 @@
 
     .editor-panel, .preview-panel{
         overflow: auto;
+        padding: 1rem;
     }
     .preview-panel{
 
+    }
+
+    .editor-panel{
+        outline: none;
+        border: none;
+        resize: none;
     }
 }
