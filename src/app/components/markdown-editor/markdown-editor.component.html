@@ -34,7 +34,10 @@
         </mat-toolbar>
       </section>
       <mat-divider></mat-divider>
-      <textarea fxFlex class="editor-panel mat-body-1" [formControl]="markdownText"></textarea>
+      <textarea [hidden]="true" [formControl]="markdownText"></textarea>
+      <section fxFlex class="editor-panel mat-body-1" #editorPanel>
+        lkjlkj
+      </section>
     </section>
     <mat-divider></mat-divider>
     <section fxFlex fxLayout="column">
@@ -65,7 +68,9 @@
         </mat-toolbar>
       </section>
       <mat-divider></mat-divider>
-      <section class="preview-panel mat-typography" nxMarkdownPreview></section>
+      <section class="preview-panel mat-typography" nxMarkdownPreview>
+
+      </section>
     </section>
   </section>
   <mat-divider></mat-divider>
