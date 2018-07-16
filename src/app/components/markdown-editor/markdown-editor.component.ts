@@ -25,7 +25,6 @@ const CK_OPTIONS = {
   };
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'nx-markdown-editor',
   templateUrl: './markdown-editor.component.html',
   styleUrls: ['./markdown-editor.component.scss']
@@ -56,6 +55,7 @@ export class MarkdownEditorComponent implements OnInit {
       .catch(error => {
         console.error(error);
       });
+
   }
 
 }
