@@ -22,7 +22,8 @@ const CK_OPTIONS = {
       { model: 'body1', view: { name: 'p', classes: 'mat-body-2' }, title: 'Body 2', class: 'mat-body-2' },
       { model: 'body2', view: { name: 'p', classes: 'mat-body-1' }, title: 'Body 1', class: 'mat-body-1' }
     ]
-  };
+  }
+};
 
 @Component({
   selector: 'nx-markdown-editor',
@@ -37,24 +38,24 @@ export class MarkdownEditorComponent implements OnInit {
     }
   ];
   markdownText: FormControl;
-  private _editorPanel: ElementRef;
-  @ViewChild('editorPanel') set editorPanel(panel) {
-    this._editorPanel = panel;
-  }
-  get editorPanel() {
-    return this._editorPanel.nativeElement;
-  }
+  // private _editorPanel: ElementRef;
+  // @ViewChild('editorPanel') set editorPanel(panel) {
+  //   this._editorPanel = panel;
+  // }
+  // get editorPanel() {
+  //   return this._editorPanel.nativeElement;
+  // }
   constructor(private markdownService: MarkdownService) {
   }
   ngOnInit() {
-    CkClassicEditor
-      .create(this.editorPanel, CK_OPTIONS)
-      .then(editor => {
-        console.log(editor);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    // CkClassicEditor
+    //   .create(this.editorPanel, CK_OPTIONS)
+    //   .then(editor => {
+    //     console.log(editor);
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //   });
 
   }
 

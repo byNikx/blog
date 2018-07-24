@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_MODULES } from './material/material.module';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 /**
  * Custom services
@@ -45,7 +46,9 @@ import { MarkdownPreviewDirective } from './components/markdown-editor/markdown-
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   ],
   providers: [
     LayoutService
