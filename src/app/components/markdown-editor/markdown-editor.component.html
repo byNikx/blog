@@ -82,6 +82,30 @@
   <section class="mat-typography" style="background-color: #fff;">
     <!--  <textarea #editorPanel></textarea>
       <div [froalaEditor]>Hello, Froala!</div> -->
+    <div #toolbar>
+      <!-- Add font size dropdown -->
+      <select class="ql-header">
+        <option value="1"></option>
+        <option value="2"></option>
+        <option value="3"></option>
+        <option value="4"></option>
+        <option value="5"></option>
+        <option value="6"></option>
+        <option selected></option>
+      </select>
+      <select class="ql-size">
+        <option value="small"></option>
+        <!-- Note a missing, thus falsy value, is used to reset to default -->
+        <option selected></option>
+        <option value="large"></option>
+        <option value="huge"></option>
+      </select>
+      <!-- Add a bold button -->
+      <button class="ql-bold"></button>
+      <!-- Add subscript and superscript buttons -->
+      <button class="ql-script" value="sub"></button>
+      <button class="ql-script" value="super"></button>
+    </div>
     <section #editorPanel></section>
   </section>
 </nx-container>
