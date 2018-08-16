@@ -56,7 +56,10 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
     this.editorInstance = new Quill(this.editorPanel, {
       modules: {
         toolbar: {
-          container: this.toolbar
+          container: this.toolbar,
+          handlers: {
+            'h1': () => { alert(''); }
+          }
         }
       },
       theme: 'snow'
