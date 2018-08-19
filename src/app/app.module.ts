@@ -25,6 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { MarkdownPipe } from './components/markdown-editor/markdown.pipe';
 import { MarkdownPreviewDirective } from './components/markdown-editor/markdown-preview.directive';
+import { ViewerComponent } from './components/post/viewer/viewer.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { MarkdownPreviewDirective } from './components/markdown-editor/markdown-
     MarkdownEditorComponent,
     HomeComponent,
     MarkdownPipe,
-    MarkdownPreviewDirective
+    MarkdownPreviewDirective,
+    ViewerComponent
   ],
   imports: [
     ...MAT_MODULES,
