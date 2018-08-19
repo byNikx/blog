@@ -2,6 +2,7 @@
 @import 'reset';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import 'util';
+@import 'node_modules/highlight.js/styles/github.css';
 
 body{
 	padding: 0;
@@ -18,7 +19,7 @@ mat-sidenav {
 a.linkified{
 	font-weight: 500;
 	text-decoration: none;
-}
+} 
 
 .comment-input-wrap{
 	.mat-form-field-infix{
