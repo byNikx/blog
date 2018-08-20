@@ -36,45 +36,30 @@ export class CodeViewerComponent implements OnInit, AfterViewInit {
   }
 
   html = `<!DOCTYPE html>
-  <title>Title</title>
+<title>Title</title>
   
-  <style>body {width: 500px;}</style>
+<style>body {width: 500px;}</style>
   
-  <script type="application/javascript">
-    function $init() {return true;}
-  </script>
+<script type="application/javascript">
+  function $init() {return true;}
+</script>
   
-  <body>
-    <p checked class="title" id='title'>Title</p>
-    <!-- here goes the rest of the page -->
-  </body>`;
+<body>
+  <p checked class="title" id='title'>Title</p>
+  <!-- here goes the rest of the page -->
+</body>`;
 
-  js = `const appRoutes: Routes = [
-    { path: 'crisis-center', component: CrisisListComponent },
-    { path: 'hero/:id',      component: HeroDetailComponent },
-    {
-      path: 'heroes',
-      component: HeroListComponent,
-      data: { title: 'Heroes List' }
-    },
-    { path: '',
-      redirectTo: '/heroes',
-      pathMatch: 'full'
-    },
-    { path: '**', component: PageNotFoundComponent }
-  ];
-  
-  @NgModule({
-    imports: [
-      RouterModule.forRoot(
-        appRoutes,
-        { enableTracing: true } // <-- debugging purposes only
-      )
-      // other imports here
-    ],
-    ...
-  })
-  export class AppModule { }`;
+  js = `/* to test a function and get back its return */
+function printElapsedTime(fTest) {
+  var nStartTime = Date.now(),
+      vReturn = fTest(),
+      nEndTime = Date.now();
+
+  console.log('Elapsed time: ' + String(nEndTime - nStartTime) + ' ms');
+  return vReturn;
+}
+
+var yourFunctionReturn = printElapsedTime(yourFunction);`;
 
   css = `@font-face {
     font-family: Chunkfive; src: url('Chunkfive.otf');
