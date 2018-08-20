@@ -1,3 +1,4 @@
+@import '../_util';
 .app-wrap{
     position: absolute;
     top: 0;
@@ -37,6 +38,14 @@ mat-sidenav.left-side-drawer {
     }
 }
 footer{
+    margin-top: auto;
     background-color: rgba(0,0,0,.04);
-    padding: 3rem;
+    padding: 2rem 3rem;
+    border-top: 1px solid rgba(0,0,0,.1);
+
+    a{
+        text-decoration: none;
+        color: rgba($primary-text-color, .7);
+        font-weight: 400;
+    }
 }

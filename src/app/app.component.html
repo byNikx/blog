@@ -48,7 +48,7 @@
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content cdkScrollable>
+  <mat-sidenav-content cdkScrollable fxLayout="column">
     <!-- <mat-toolbar #topBar>
       <nx-container>
         <nx-search-bar-top></nx-search-bar-top>
@@ -56,7 +56,17 @@
     </mat-toolbar>
     <mat-divider></mat-divider> -->
     <router-outlet></router-outlet>
-    <!-- <footer class="mat-typography">
-    </footer> -->
+    <footer class="mat-typography">
+      <section fxLayout="column" fxLayoutGap="2rem">
+        <!-- <section>dwedwe</section>
+        <mat-divider></mat-divider> -->
+        <section fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="2rem">
+          <img src="/assets/nikx-logo-grayscale-c-small.png" width="90" />
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Feedback</a>
+        </section>
+      </section>
+    </footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -3,6 +3,7 @@
     line-height: 1.925;
     font-size: 16px;
     letter-spacing: 0;
+    color: #000;
 }
 .post-title{
     margin: 1rem auto 1.7rem;
@@ -17,4 +18,13 @@ a.main-category{
     &:hover{
         color: red;
     }
+}
+.avatar{
+    height: 64px;
+    width: 64px;
+    border-radius: 32px;
+    background-color: rgba(#000, .1);
+    background-image: url("https://s3.amazonaws.com/uifaces/faces/twitter/mrmartineau/128.jpg");
+    background-size: cover;
+    // border: 1px solid rgba(0, 0, 0, .1);
 }

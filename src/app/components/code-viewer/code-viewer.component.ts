@@ -49,17 +49,16 @@ export class CodeViewerComponent implements OnInit, AfterViewInit {
   <!-- here goes the rest of the page -->
 </body>`;
 
-  js = `/* to test a function and get back its return */
-function printElapsedTime(fTest) {
-  var nStartTime = Date.now(),
-      vReturn = fTest(),
-      nEndTime = Date.now();
-
-  console.log('Elapsed time: ' + String(nEndTime - nStartTime) + ' ms');
-  return vReturn;
-}
-
-var yourFunctionReturn = printElapsedTime(yourFunction);`;
+  js = `const array1 = [1, 2, 3, 4];
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  
+/* 1 + 2 + 3 + 4 */
+console.log(array1.reduce(reducer));
+/* expected output: 10 */
+  
+/* 5 + 1 + 2 + 3 + 4 */
+console.log(array1.reduce(reducer, 5));
+/* expected output: 15 */`;
 
   css = `@font-face {
     font-family: Chunkfive; src: url('Chunkfive.otf');
