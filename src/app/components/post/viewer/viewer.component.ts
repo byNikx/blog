@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'nx-viewer',
   templateUrl: './viewer.component.html',
-  styleUrls: ['./viewer.component.scss']
+  styleUrls: ['./viewer.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ViewerComponent implements OnInit {
 
   testmarked = `
-  <h1 class="mat-display-2">Hello World</h1>
+  <h1 class="mat-display-1">Description</h1>
   Emphasis, aka italics, with *asterisks* or _underscores_.
 
 Strong emphasis, aka bold, with **asterisks** or __underscores__.

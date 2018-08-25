@@ -41,7 +41,7 @@ import { CodeViewerComponent } from './components/code-viewer/code-viewer.compon
     MarkdownPipe,
     MarkdownPreviewDirective,
     ViewerComponent,
-    CodeViewerComponent
+    CodeViewerComponent,
   ],
   imports: [
     ...MAT_MODULES,
