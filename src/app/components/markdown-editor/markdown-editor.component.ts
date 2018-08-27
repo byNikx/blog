@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener, AfterViewInit, Renderer2, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MarkdownService } from '../markdown-editor/markdown.service';
-import * as Quill from 'quill';
+
+declare const window: any;
 
 const Q_TOOLBAR_OPTIONS = [
   [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
@@ -51,12 +52,14 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit, OnDestroy
   constructor(private markdownService: MarkdownService, private renderer: Renderer2) {
   }
   ngOnInit() {
+
   }
 
   ngAfterViewInit() {
     this.editorPanel.contentEditable = true;
     this.editorPanelInputListener = this.renderer.listen(this.editorPanel, 'input', (event) => {
       this.markdownService.setMarkdownString(event.target.innerText);
+      window.localStorage.setItem('markdownString', event.target.innerText);
     });
   }
 

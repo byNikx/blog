@@ -13,6 +13,10 @@
     ul, ol{
         margin: 1rem 2rem;
     }
+    img{
+        display: block;
+        max-width: 100%;
+    }
     a{
         color: $primary-color;
         text-decoration: none;
@@ -21,14 +25,23 @@
 
         &::before{
         }
+        
+        &:visited{
+            color: #283593
+        }
 
         &:hover{
+            text-decoration: underline;
+        }
+        
+        &:active{
             color: $accent-color;
         }
+
     }
 
     blockquote{
-        padding: .6rem 1.4rem;
+        padding: .8rem 1.4rem;
         background-color: rgba(#000, .1);
         border-left: .4rem solid  rgba($primary-color, 1);
         margin-bottom: 1rem;

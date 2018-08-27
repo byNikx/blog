@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 import { MarkdownService } from '../../markdown-editor/markdown.service';
 
 @Component({
@@ -9,8 +9,19 @@ import { MarkdownService } from '../../markdown-editor/markdown.service';
 })
 export class ViewerComponent implements OnInit {
 
-  constructor(private markdownService: MarkdownService) { }
+  str = '';
+
+  constructor(public markdownService: MarkdownService) { }
 
   ngOnInit() {
+    this.markdownService.getRawText().subscribe(e => {
+      console.log(e);
+    });
+  }
+
+
+  @HostListener('window:storage', ['$event'])
+  onStorageChange(ev: StorageEvent) {
+    this.str = ev.newValue;
   }
 }

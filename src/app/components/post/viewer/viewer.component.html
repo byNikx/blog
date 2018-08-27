@@ -22,8 +22,8 @@
       </p>
       <!-- <nx-code-viewer class="mat-elevation-z1" style="background: #fff;"></nx-code-viewer> -->
       <!-- <iframe height='300' scrolling='no' title='Mouse n Sliders Test jQuery' src='//codepen.io/poziomq/embed/preview/mOwBBX/?height=265&theme-id=dark&default-tab=css,result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/poziomq/pen/mOwBBX/'>Mouse 'n Sliders Test jQuery</a> by qpoziomek (<a href='https://codepen.io/poziomq'>@poziomq</a>) on <a href='https://codepen.io'>CodePen</a>.
-</iframe> --> 
-      <article class="markdown-text mat-typography mat-body-1" [innerHTML]="markdownService.getRawText() | async | markdown"></article>
+</iframe> -->
+      <article class="markdown-text mat-typography mat-body-1" [innerHTML]="str | markdown"></article>
       <!-- <p class="rich-text" *ngFor="let a of [1]">
         On Thursday, we said goodbye to Aretha “Queen of Soul” Franklin who lost her battle with pancreatic cancer at 76. This musical
         legend gave the world iconic hits like “Respect,” “Natural Woman,” “Think,” “I Say A Little Prayer,” and “Chain of

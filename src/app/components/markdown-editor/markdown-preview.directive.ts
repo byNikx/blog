@@ -9,7 +9,7 @@ export class MarkdownPreviewDirective implements OnInit {
 
   constructor(
     private element: ElementRef,
-    private markdownService: MarkdownService,
+    public markdownService: MarkdownService,
     private renderer: Renderer2) {
   }
 

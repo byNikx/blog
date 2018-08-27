@@ -6,10 +6,10 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class MarkdownService {
 
-  _markdownString: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  private _markdownString: BehaviorSubject<string> = new BehaviorSubject<string>('ssssssssssssssssssssss');
   constructor() { }
 
-  getRawText(): Observable<any> {
+  getRawText(): BehaviorSubject<string> {
     return this._markdownString;
   }
 
