@@ -28,7 +28,6 @@ import { MarkdownPreviewDirective } from './components/markdown-editor/markdown-
 import { ViewerComponent } from './components/post/viewer/viewer.component';
 import { CodeViewerComponent } from './components/code-viewer/code-viewer.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

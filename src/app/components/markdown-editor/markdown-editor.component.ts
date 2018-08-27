@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener, AfterViewInit, Renderer2, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MarkdownService } from '../markdown-editor/markdown.service';
 import * as Quill from 'quill';
@@ -20,7 +20,7 @@ const QUILL_OPTIONS = {
   templateUrl: './markdown-editor.component.html',
   styleUrls: ['./markdown-editor.component.scss']
 })
-export class MarkdownEditorComponent implements OnInit, AfterViewInit {
+export class MarkdownEditorComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private toolbarActions = [
     {
@@ -30,7 +30,8 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
   editorInstance: any;
   markdownText: FormControl;
   private _editorPanel: ElementRef;
-  private _toolbar: ElementRef;
+  private _previewPanel: ElementRef;
+  private editorPanelInputListener: Function;
 
   @ViewChild('editorPanel') set editorPanel(panel) {
     this._editorPanel = panel;
@@ -39,32 +40,28 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
     return this._editorPanel.nativeElement;
   }
 
-  @ViewChild('toolbar') set toolbar(toolbar) {
-    this._toolbar = toolbar;
+  @ViewChild('preview') set previewPanel(panel) {
+    this._previewPanel = panel;
   }
-  get toolbar() {
-    return this._toolbar.nativeElement;
+  get previewPanel() {
+    return this._previewPanel.nativeElement;
   }
 
 
-  constructor(private markdownService: MarkdownService) {
+  constructor(private markdownService: MarkdownService, private renderer: Renderer2) {
   }
   ngOnInit() {
   }
 
   ngAfterViewInit() {
-    this.editorInstance = new Quill(this.editorPanel, {
-      modules: {
-        toolbar: {
-          container: this.toolbar,
-          handlers: {
-            'h1': () => { alert(''); }
-          }
-        }
-      },
-      theme: 'snow'
+    this.editorPanel.contentEditable = true;
+    this.editorPanelInputListener = this.renderer.listen(this.editorPanel, 'input', (event) => {
+      this.markdownService.setMarkdownString(event.target.innerText);
     });
+  }
 
+  ngOnDestroy() {
+    this.editorPanelInputListener();
   }
 
 }

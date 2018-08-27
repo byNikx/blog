@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MarkdownService {
 
-  _markdownString: Observable<any>;
+  _markdownString: BehaviorSubject<string> = new BehaviorSubject<string>('');
   constructor() { }
 
   getRawText(): Observable<any> {
     return this._markdownString;
   }
 
-  set markdownString(markdownString: Observable<any>) {
-    this._markdownString = markdownString;
+  setMarkdownString(markdownString) {
+    this._markdownString.next(markdownString);
   }
 }

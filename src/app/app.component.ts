@@ -1,4 +1,4 @@
-import { Component, ViewChild, Inject, HostListener, ElementRef } from '@angular/core';
+import { Component, ViewChild, Inject, HostListener, ElementRef, AfterViewInit } from '@angular/core';
 import { LayoutService } from './services/layout/layout.service';
 import { MatToolbar, MatSidenavContent, MatSidenavContainer } from '@angular/material';
 import { DOCUMENT } from '@angular/common';
@@ -11,7 +11,7 @@ import { debounceTime } from 'rxjs/operators';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'app';
   @ViewChild(MatSidenavContent) body: ElementRef;
   @ViewChild('topBar') private topBar: MatToolbar;

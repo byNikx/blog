@@ -1,16 +1,25 @@
+@import '../post/viewer/viewer.component.scss';
 :host{
-
+    ::ng-deep{
     .editor-panel, .preview-panel{
         overflow: auto;
         padding: 1rem;
+        margin: 1rem;
+        border: 1px solid rgba(0,0,0,.1);
+        border-radius: .2rem;
     }
     .preview-panel{
         position: relative;
+        
+        @extend .markdown-text;
+        
     }
 
     .editor-panel{
+        background-color: #fff;
         outline: none;
-        border: none;
         resize: none;
     }
+    
+}
 }
