@@ -40,6 +40,20 @@
 
     }
 
+    code{
+        background-color: rgba(0,0,0,.05);
+        padding: .1rem .3rem;
+        border-radius: .3rem;
+        display: inline-block;
+        font-size: 1rem;
+
+        &[class]{
+            width: 100%;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+    }
+
     blockquote{
         padding: .8rem 1.4rem;
         background-color: rgba(#000, .1);
@@ -58,15 +72,17 @@
 .post-title{
     margin: 1rem auto 1.7rem;
     line-height: 1.17857;
-}
-a.main-category{
-    display: inline-block;
-    text-decoration: none;
-    margin-top: 3rem;
-    color: $primary-text-color;
-
-    &:hover{
-        color: red;
+    
+    a.main-category{
+        display: block;
+        text-decoration: none;
+        margin-top: 3rem;
+        color: $primary-text-color;
+        margin-bottom: 1.5rem;
+    
+        &:hover{
+            color: red;
+        }
     }
 }
 .avatar{

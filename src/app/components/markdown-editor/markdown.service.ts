@@ -6,7 +6,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class MarkdownService {
 
-  private _markdownString: BehaviorSubject<string> = new BehaviorSubject<string>('ssssssssssssssssssssss');
+  private _markdownString: BehaviorSubject<string> = new BehaviorSubject<string>('');
   constructor() { }
 
   getRawText(): BehaviorSubject<string> {
