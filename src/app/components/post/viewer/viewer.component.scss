@@ -50,6 +50,7 @@
         &[class]{
             width: 100%;
             padding: 1rem;
+            margin-top: .4rem;
             box-sizing: border-box;
         }
     }
@@ -78,7 +79,7 @@
         text-decoration: none;
         margin-top: 3rem;
         color: $primary-text-color;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.13rem;
     
         &:hover{
             color: red;
