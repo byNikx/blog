@@ -1,10 +1,11 @@
 import { Component, ViewChild, Inject, HostListener, ElementRef, AfterViewInit } from '@angular/core';
 import { LayoutService } from './services/layout/layout.service';
-import { MatToolbar, MatSidenavContent, MatSidenavContainer } from '@angular/material';
+import { MatToolbar, MatSidenavContent, MatSidenavContainer, MatIconRegistry } from '@angular/material';
 import { DOCUMENT } from '@angular/common';
 import { ScrollService } from './services/scroll/scroll.service';
 import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
 import { debounceTime } from 'rxjs/operators';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -19,11 +20,16 @@ export class AppComponent implements AfterViewInit {
     public layout: LayoutService,
     private scrollService: ScrollService,
     private scrollDispatcher: ScrollDispatcher,
-    @Inject(DOCUMENT) private document: Document) {
-
-    //    console.log(document);
-
-
+    @Inject(DOCUMENT) private document: Document,
+    sanitizer: DomSanitizer,
+    iconRegistry: MatIconRegistry) {
+    ['facebook', 'twitter', 'linkedin', 'googleplus', 'whatsapp'].forEach(icon => {
+      const location = `assets/icons/${icon}.svg`;
+      iconRegistry.addSvgIcon(
+        icon,
+        sanitizer.bypassSecurityTrustResourceUrl(location)
+      );
+    });
   }
 
   ngAfterViewInit() {

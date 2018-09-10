@@ -27,6 +27,7 @@ import { MarkdownPipe } from './components/markdown-editor/markdown.pipe';
 import { MarkdownPreviewDirective } from './components/markdown-editor/markdown-preview.directive';
 import { ViewerComponent } from './components/post/viewer/viewer.component';
 import { CodeViewerComponent } from './components/code-viewer/code-viewer.component';
+import { SharingComponent } from './components/widgets/sharing/sharing.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { CodeViewerComponent } from './components/code-viewer/code-viewer.compon
     MarkdownPreviewDirective,
     ViewerComponent,
     CodeViewerComponent,
+    SharingComponent,
   ],
   imports: [
     ...MAT_MODULES,
