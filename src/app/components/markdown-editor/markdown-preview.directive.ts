@@ -21,7 +21,7 @@ export class MarkdownPreviewDirective implements OnInit {
         this.renderer.setStyle(this.element.nativeElement, 'visibility', 'visible');
       }
       this.element.nativeElement.innerHTML = new MarkdownPipe().transform(text);
-      console.log(this.element.nativeElement.textContent);
+      //console.log(this.element.nativeElement.textContent);
     });
   }
 }

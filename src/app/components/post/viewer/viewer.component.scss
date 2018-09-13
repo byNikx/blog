@@ -1,7 +1,7 @@
 @import '../../../../_util';
 
 .markdown-text{
-    font-size: mobile-to-web-font-size(16);
+    font-size: mobile-to-web-font-size(18);
     line-height: 1.625;
     letter-spacing: 0;
     color: #000;
@@ -11,7 +11,7 @@
         margin-bottom: 2rem;
     }
     ul, ol{
-        margin: 1rem 2rem;
+        margin: 0rem 2rem;
     }
     img{
         display: block;

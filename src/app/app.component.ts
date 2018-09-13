@@ -7,6 +7,9 @@ import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
 import { debounceTime } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
 
+
+declare const gapi: any;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,6 +17,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AppComponent implements AfterViewInit {
   title = 'app';
+  private GoogleAuth: any;
+
   @ViewChild(MatSidenavContent) body: ElementRef;
   @ViewChild('topBar') private topBar: MatToolbar;
   constructor(
@@ -32,7 +37,34 @@ export class AppComponent implements AfterViewInit {
     });
   }
 
+  signin() {
+    if (this.GoogleAuth) {
+      this.GoogleAuth.signIn().then(success => {
+        console.log('success', success);
+      }, error => {
+        console.log('error', error);
+      });
+    }
+  }
+
+  initAuthentication() {
+
+  }
+
   ngAfterViewInit() {
+    const params = {
+      client_id: '903207276766-dh56up2ltarmru9tc1q93t66hhbu8ijl.apps.googleusercontent.com'
+    };
+
+    gapi.load('auth2', () => {
+      console.log('auth2 is loaded!');
+      this.GoogleAuth = gapi.auth2.init(params);
+      this.GoogleAuth.then(onInit => {
+        console.log('initialized!', onInit);
+      }, onError => {
+        console.log('initialization failed!', onError);
+      });
+    });
     // this.scrollService.getScrollAsStream(this.body).subscribe(e => {
     //   console.log(e);
     // });
