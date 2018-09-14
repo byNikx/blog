@@ -1,11 +1,13 @@
-import { Component, ViewChild, Inject, HostListener, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, Inject, HostListener, ElementRef, AfterViewInit, NgZone, ChangeDetectorRef } from '@angular/core';
 import { LayoutService } from './services/layout/layout.service';
-import { MatToolbar, MatSidenavContent, MatSidenavContainer, MatIconRegistry } from '@angular/material';
+import { MatToolbar, MatSidenavContent, MatSidenavContainer, MatIconRegistry, MatSnackBar } from '@angular/material';
 import { DOCUMENT } from '@angular/common';
 import { ScrollService } from './services/scroll/scroll.service';
 import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
 import { debounceTime } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NotificationService } from './services/notification/notification.service';
+import { AuthenticationService } from './services/authentication/authentication.service';
 
 
 declare const gapi: any;
@@ -25,9 +27,14 @@ export class AppComponent implements AfterViewInit {
     public layout: LayoutService,
     private scrollService: ScrollService,
     private scrollDispatcher: ScrollDispatcher,
+    private notification: NotificationService,
+    private changeDetectorRef: ChangeDetectorRef,
     @Inject(DOCUMENT) private document: Document,
+    public authenticationService: AuthenticationService,
     sanitizer: DomSanitizer,
-    iconRegistry: MatIconRegistry) {
+    iconRegistry: MatIconRegistry
+  ) {
+
     ['facebook', 'twitter', 'linkedin', 'googleplus', 'whatsapp'].forEach(icon => {
       const location = `assets/icons/${icon}.svg`;
       iconRegistry.addSvgIcon(
@@ -35,36 +42,39 @@ export class AppComponent implements AfterViewInit {
         sanitizer.bypassSecurityTrustResourceUrl(location)
       );
     });
+
+    authenticationService.google.onSignInStatusChange(status => {
+      authenticationService.isSignedIn = status;
+      this.changeDetectorRef.detectChanges();
+    });
+
+    authenticationService.google.onUserChange(user => {
+      authenticationService.currentUser = user;
+      this.changeDetectorRef.detectChanges();
+    });
   }
 
-  signin() {
-    if (this.GoogleAuth) {
-      this.GoogleAuth.signIn().then(success => {
-        console.log('success', success);
-      }, error => {
-        console.log('error', error);
-      });
-    }
+  signIn() {
+    this.authenticationService.google.signIn().then(user => {
+      this.notification.show.snackbar('Signed in successfully!');
+    }).catch(error => {
+      const a = this.notification.show.snackbar('Something went wrong.', 'Try again');
+    });
   }
 
-  initAuthentication() {
-
+  signOut() {
+    this.authenticationService.google.signOut().then(user => {
+      this.notification.show.snackbar('Signed out successfully!');
+    }).catch(error => {
+      this.notification.show.snackbar('Something went wrong.', 'Sign out');
+    });
   }
+
+
+
 
   ngAfterViewInit() {
-    const params = {
-      client_id: '903207276766-dh56up2ltarmru9tc1q93t66hhbu8ijl.apps.googleusercontent.com'
-    };
 
-    gapi.load('auth2', () => {
-      console.log('auth2 is loaded!');
-      this.GoogleAuth = gapi.auth2.init(params);
-      this.GoogleAuth.then(onInit => {
-        console.log('initialized!', onInit);
-      }, onError => {
-        console.log('initialization failed!', onError);
-      });
-    });
     // this.scrollService.getScrollAsStream(this.body).subscribe(e => {
     //   console.log(e);
     // });
@@ -82,5 +92,7 @@ export class AppComponent implements AfterViewInit {
     //   console.log(e);
     // });
   }
+
+
 
 }

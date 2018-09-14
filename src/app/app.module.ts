@@ -1,6 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule, forwardRef, APP_INITIALIZER, LOCALE_ID } from '@angular/core';
+import { NgModule, APP_INITIALIZER, LOCALE_ID, ApplicationRef } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -8,9 +7,15 @@ import { MAT_MODULES } from './material/material.module';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 /**
+ * Environment variables
+ */
+import { environment } from '../environments/environment';
+
+/**
  * Custom services
  */
 import { LayoutService } from './services/layout/layout.service';
+import { AuthenticationService } from './services/authentication/authentication.service';
 
 /**
  * Custom components
@@ -29,6 +34,31 @@ import { ViewerComponent } from './components/post/viewer/viewer.component';
 import { CodeViewerComponent } from './components/code-viewer/code-viewer.component';
 import { SharingComponent } from './components/widgets/sharing/sharing.component';
 
+declare const gapi: any;
+
+export function initializeAuthentication(authenticationService: AuthenticationService): Function {
+  return () => {
+    return new Promise((resolve, reject) => {
+      const googleWebConfig = environment.google.web;
+      const params = {
+        client_id: googleWebConfig.client_id
+      };
+      gapi.load('auth2', () => {
+        gapi.auth2.init(params).then(onInit => {
+          authenticationService.google.gapi = gapi;
+          authenticationService.isSignedIn = authenticationService.google.isSignedIn();
+          if (authenticationService.isSignedIn) {
+            authenticationService.currentUser = authenticationService.google.currentUser;
+          }
+          resolve();
+        }, onError => {
+          reject('Something went wrong, please try again later.');
+        });
+      });
+
+    });
+  };
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,11 +82,17 @@ import { SharingComponent } from './components/widgets/sharing/sharing.component
     ReactiveFormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot()
   ],
   providers: [
-    LayoutService
+    LayoutService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeAuthentication,
+      deps: [
+        AuthenticationService,
+      ],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

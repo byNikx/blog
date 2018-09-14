@@ -10,18 +10,16 @@
         <h3 class="active-email">nikx.fabrizio@gmail.com</h3>
       </section>
     </section> -->
-    <section style="background-image: url('https://i.pinimg.com/originals/a2/94/e1/a294e148d0d3081ee76421371b27e5d3.jpg'); background-size: cover; height: 200px; box-sizing: border-box;" fxLayout="column">
-      <section fxFlex style=" padding:1rem;">
-        <nx-search-bar-top></nx-search-bar-top>
-      </section>
-      <section class="user-info mat-typography" fxLayout="column" fxLayoutGap="1rem">
-      <section>
-        <figure class="active-avatar mat-elevation-z1" style="background-image: url('https://avatars1.githubusercontent.com/u/16052650?s=460&v=4')"></figure>
-      </section>
+    <section style="background-image: url('https://i.pinimg.com/originals/a2/94/e1/a294e148d0d3081ee76421371b27e5d3.jpg'); background-size: cover; height: 200px; padding:1rem; box-sizing: border-box;">
+      <nx-search-bar-top></nx-search-bar-top>
     </section>
-    </section>
-    <mat-divider></mat-divider>
     <mat-nav-list>
+      <mat-list-item *ngIf="authenticationService.isSignedIn" class="user-info" disableRipple>
+        <img matListAvatar [src]="authenticationService.currentUser.avatar" [alt]="authenticationService.currentUser.name" />
+        <h1 matLine class="active-name" [innerText]="authenticationService.currentUser.name"></h1>
+        <p matLine [innerText]="authenticationService.currentUser.email"></p>
+      </mat-list-item>
+      <mat-divider *ngIf="authenticationService.isSignedIn"></mat-divider>
       <mat-list-item routerLink="/home" routerLinkActive="active">
         <mat-icon matListIcon>home</mat-icon>
         <span matLine>Home</span>
@@ -30,8 +28,6 @@
         <mat-icon matListIcon>edit</mat-icon>
         <span matLine>Editor</span>
       </mat-list-item>
-      <mat-divider style="margin-top: .5rem;"></mat-divider>
-      <h1 matSubheader>Profile</h1>
       <mat-list-item>
         <mat-icon matListIcon>account_circle</mat-icon>
         <span matLine>Profile</span>
@@ -44,20 +40,19 @@
         <mat-icon matListIcon>favorite</mat-icon>
         <span matLine>Favorite</span>
       </mat-list-item>
-      <mat-list-item>
+      <!-- <mat-list-item>
         <mat-icon matListIcon>bookmarks</mat-icon>
         <span matLine>Bookmarks</span>
       </mat-list-item>
       <mat-list-item>
         <mat-icon matListIcon>settings</mat-icon>
         <span matLine>Settings</span>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item (click)="signin()">
+      </mat-list-item> -->
+      <mat-list-item *ngIf="!authenticationService.isSignedIn" (click)="signIn()">
         <mat-icon matListIcon>power_settings_new</mat-icon>
         <span matLine>Sign in</span>
       </mat-list-item>
-      <mat-list-item>
+      <mat-list-item *ngIf="authenticationService.isSignedIn" (click)="signOut()">
         <mat-icon matListIcon>power_settings_new</mat-icon>
         <span matLine>Sign out</span>
       </mat-list-item>
