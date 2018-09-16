@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, APP_INITIALIZER, LOCALE_ID, ApplicationRef } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_MODULES } from './material/material.module';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
@@ -36,21 +36,59 @@ import { SharingComponent } from './components/widgets/sharing/sharing.component
 
 declare const gapi: any;
 
-export function initializeAuthentication(authenticationService: AuthenticationService): Function {
+export function initializeAuthentication(authenticationService: AuthenticationService, http: HttpClient): Function {
   return () => {
     return new Promise((resolve, reject) => {
       const googleWebConfig = environment.google.web;
       const params = {
         client_id: googleWebConfig.client_id
       };
+      function _onSignInSuccess(user) {
+        authenticationService.isSignedIn = true;
+        authenticationService.currentUser = user;
+        resolve();
+      }
+      function _onSignInError(error) {
+        console.error('Unable to verify user, please login again.', error);
+        resolve();
+      }
       gapi.load('auth2', () => {
         gapi.auth2.init(params).then(onInit => {
           authenticationService.google.gapi = gapi;
-          authenticationService.isSignedIn = authenticationService.google.isSignedIn();
-          if (authenticationService.isSignedIn) {
-            authenticationService.currentUser = authenticationService.google.currentUser;
+
+          if (authenticationService.google.isSignedIn()) {
+
+            // Getting currently signed in user's AuthResponse provided by google
+            const token = authenticationService.google.currentUser.getAuthResponse();
+
+            // Reload the AuthResponse if it's expired
+            if (token.expires_in <= 0) {
+              authenticationService.google.currentUser.reloadAuthResponse().then(authResponse => {
+                /**
+                * Verifying the integrity of the ID token and use the user
+                * information contained in the token to establish a session
+                */
+                authenticationService
+                  .tokenSignIn(authResponse.id_token)
+                  .toPromise()
+                  .then(_onSignInSuccess)
+                  .catch(_onSignInError);
+              });
+            } else {
+              /**
+              * Verifying the integrity of the ID token and use the user
+              * information contained in the token to establish a session
+              */
+              authenticationService
+                .tokenSignIn(token.id_token)
+                .toPromise()
+                .then(_onSignInSuccess)
+                .catch(_onSignInError);
+
+            }
+          } else {
+            resolve();
           }
-          resolve();
         }, onError => {
           reject('Something went wrong, please try again later.');
         });
@@ -90,6 +128,7 @@ export function initializeAuthentication(authenticationService: AuthenticationSe
       useFactory: initializeAuthentication,
       deps: [
         AuthenticationService,
+        HttpClient
       ],
       multi: true
     }

@@ -32,8 +32,8 @@ mat-sidenav.left-side-drawer {
                 margin-right: 1rem;
     
                 &.active{
-                    background-color: rgba(red, .1);
-                    color: red;
+                    background-color: rgba($accent-color, .1);
+                    color: $accent-color;
                 }
             }
 

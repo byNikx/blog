@@ -22,6 +22,15 @@ export const environment = {
         'http://localhost:4200'
       ]
     }
+  },
+  api: {
+    host: 'localhost',
+    scheme: 'http',
+    basePath: '/v1',
+    port: 5000,
+    authentication: {
+      tokenSignIn: '/tokensignin'
+    }
   }
 };
 

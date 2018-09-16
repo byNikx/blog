@@ -15,7 +15,7 @@ export class ViewerComponent implements OnInit {
 
   ngOnInit() {
     this.markdownService.getRawText().subscribe(e => {
-      console.log(e);
+      //      console.log(e);
     });
   }
 

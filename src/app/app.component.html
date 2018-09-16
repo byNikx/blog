@@ -1,5 +1,5 @@
 <mat-sidenav-container class="app-wrap">
-  <mat-sidenav class="left-side-drawer" mode="side" [opened]="layout.media.isActive('gt-sm')">
+  <mat-sidenav #sidenav class="left-side-drawer" [mode]="sideNavMode" [opened]="layout.media.isActive('gt-sm')">
     <!-- <mat-sidenav class="left-side-drawer" mode="side" opened="false"> -->
     <!-- <section class="user-info mat-typography" fxLayout="column" fxLayoutGap="1rem">
       <section>
@@ -14,7 +14,7 @@
       <nx-search-bar-top></nx-search-bar-top>
     </section>
     <mat-nav-list>
-      <mat-list-item *ngIf="authenticationService.isSignedIn" class="user-info" disableRipple>
+      <mat-list-item *ngIf="authenticationService.isSignedIn && authenticationService.currentUser" class="user-info" disableRipple>
         <img matListAvatar [src]="authenticationService.currentUser.avatar" [alt]="authenticationService.currentUser.name" />
         <h1 matLine class="active-name" [innerText]="authenticationService.currentUser.name"></h1>
         <p matLine [innerText]="authenticationService.currentUser.email"></p>
@@ -59,7 +59,16 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content cdkScrollable fxLayout="column">
-    <router-outlet></router-outlet>
+    <mat-toolbar color="primary" class="mat-elevation-z4" style="z-index: 2; position: fixed;">
+      <mat-toolbar-row fxLayoutGap="1rem">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Blog</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <section class="sidenav-content" fxLayout="column" fxFlex style=" padding-top: 60px;">
+      <router-outlet></router-outlet>
     <footer class="mat-typography">
       <section fxLayout="column" fxLayoutGap="2rem">
         <!-- <section>dwedwe</section>
@@ -72,5 +81,6 @@
         </section>
       </section>
     </footer>
+    </section>
   </mat-sidenav-content>
 </mat-sidenav-container>

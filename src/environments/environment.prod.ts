@@ -12,5 +12,14 @@ export const environment = {
         'http://nikx.co'
       ]
     }
+  },
+  api: {
+    host: 'localhost',
+    scheme: 'http',
+    basePath: '/v1',
+    port: 5000,
+    authentication: {
+      tokenSignIn: '/tokensignin'
+    }
   }
 };

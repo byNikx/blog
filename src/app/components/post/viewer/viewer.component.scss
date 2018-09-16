@@ -1,86 +1,6 @@
 @import '../../../../_util';
 .post-container{
 
-    .markdown-text{
-        font-size: mobile-to-web-font-size(18);
-        line-height: 1.625;
-        letter-spacing: 0;
-        color: #000;
-        font-weight: 300;
-    
-        *[class|="mat-display"]{
-            margin-bottom: 2rem;
-        }
-        ul, ol{
-            margin: 0rem 2rem;
-        }
-        img{
-            display: block;
-            max-width: 100%;
-            border-radius: .2rem;
-        }
-        a{
-            color: $primary-color;
-            text-decoration: none;
-            font-weight: 400;
-            transition: color .2s;
-    
-            &::before{
-            }
-            
-            &:visited{
-                color: #283593
-            }
-    
-            &:hover{
-                text-decoration: underline;
-            }
-            
-            &:active{
-                color: $accent-color;
-            }
-    
-        }
-    
-        pre {
-            white-space: pre-wrap;       /* Since CSS 2.1 */
-            white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-            white-space: -pre-wrap;      /* Opera 4-6 */
-            white-space: -o-pre-wrap;    /* Opera 7 */
-            word-wrap: break-word; 
-        }
-        code{
-            background-color: rgba(0,0,0,.05);
-            padding: .1rem .3rem;
-            border-radius: .2rem;
-            display: inline-block;
-            font-size: 1rem;
-    
-            &[class]{
-                width: 100%;
-                padding: 1rem;
-                margin-top: .4rem;
-                box-sizing: border-box;
-            }
-        }
-    
-        blockquote{
-            padding: .8rem 1.4rem;
-            background-color: rgba(#000, .1);
-            border-left: .4rem solid  rgba($primary-color, 1);
-            margin-bottom: 1rem;
-            border-radius: 0 .2rem .2rem 0;
-    
-            p:last-child{
-                margin-bottom: 0;
-            }
-        }
-    
-        strong{
-            font-weight: 500;
-        }
-    }
-
     a.main-category{
         display: inline-block;
         text-decoration: none;
@@ -89,7 +9,7 @@
         margin-bottom: 1.13rem;
     
         &:hover{
-            color: red;
+            color: $accent-color;
         }
     }
 
@@ -97,7 +17,7 @@
         margin: 0 auto 1.7rem;
         line-height: 1.17857;
         
-    }
+    } 
     .avatar{
         height: 64px;
         width: 64px;
@@ -112,3 +32,82 @@
 
 }
 
+.markdown-text{
+    font-size: mobile-to-web-font-size(18);
+    line-height: 1.625;
+    letter-spacing: 0;
+    color: #000;
+    font-weight: 300;
+
+    *[class|="mat-display"]{
+        margin-bottom: 2rem;
+    }
+    ul, ol{
+        margin: 0rem 2rem;
+    }
+    img{
+        display: block;
+        max-width: 100%;
+        border-radius: .2rem;
+    }
+    a{
+        color: $primary-color;
+        text-decoration: none;
+        font-weight: 400;
+        transition: color .2s;
+
+        &::before{
+        }
+        
+        &:visited{
+            color: #283593
+        }
+
+        &:hover{
+            text-decoration: underline;
+        }
+        
+        &:active{
+            color: $accent-color;
+        }
+
+    }
+
+    pre {
+        white-space: pre-wrap;       /* Since CSS 2.1 */
+        white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+        white-space: -pre-wrap;      /* Opera 4-6 */
+        white-space: -o-pre-wrap;    /* Opera 7 */
+        word-wrap: break-word; 
+    }
+    code{
+        background-color: rgba(0,0,0,.05);
+        padding: .1rem .3rem;
+        border-radius: .2rem;
+        display: inline-block;
+        font-size: 1rem;
+
+        &[class]{
+            width: 100%;
+            padding: 1rem;
+            margin-top: .4rem;
+            box-sizing: border-box;
+        }
+    }
+
+    blockquote{
+        padding: .8rem 1.4rem;
+        background-color: rgba(#000, .1);
+        border-left: .4rem solid  rgba($primary-color, 1);
+        margin-bottom: 1rem;
+        border-radius: 0 .2rem .2rem 0;
+
+        p:last-child{
+            margin-bottom: 0;
+        }
+    }
+
+    strong{
+        font-weight: 500;
+    }
+}

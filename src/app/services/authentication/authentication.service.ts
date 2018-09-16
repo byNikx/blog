@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { UtilityService } from '../utility.service';
 declare enum GoogleAuthentication {
 
   // The user closed the popup before finishing the sign in flow.
@@ -16,12 +19,16 @@ declare enum GoogleAuthentication {
 
 }
 
+
+
+
 interface User {
   id: string;
   name: string;
   firstName: string;
   lastName: string;
   email: string;
+  emailVerified: boolean;
   avatar: string;
 }
 
@@ -120,21 +127,40 @@ export class AuthenticationService {
    * Returns currently active user.
    */
   private _currentUser: User;
-  get currentUser(): any {
+  get currentUser(): User {
     return this._currentUser;
   }
-  set currentUser(user: any) {
-    const profile = user.getBasicProfile();
-    this._currentUser = {
-      id: profile.getId(),
-      name: profile.getName(),
-      firstName: profile.getGivenName(),
-      lastName: profile.getFamilyName(),
-      email: profile.getEmail(),
-      avatar: profile.getImageUrl()
-    };
+  set currentUser(user: User) {
+    //    const profile = user.getBasicProfile();
+    this._currentUser = user;
   }
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+    private util: UtilityService
+  ) {
+
+  }
+
+  /**
+   * Sign in user with token
+   * API end point: /tokensignin
+   * @param token 
+   */
+  tokenSignIn(token: string): Observable<any> {
+    if (!token) {
+      throw Error(`${token} is not a valid token`);
+    }
+    const api = environment.api;
+    // API namespace: authentication
+    // API key: tokenSignIn
+    const url = this.util.getApiEndPoint(api['authentication']['tokenSignIn']);
+    return this.http.post(url, token);
+  }
+
+  onSignInSuccess(user: User) {
+    this.isSignedIn = this.google.isSignedIn();
+    this.currentUser = user;
+  }
 
 }

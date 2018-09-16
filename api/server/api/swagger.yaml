@@ -1,0 +1,62 @@
+---
+swagger: "2.0"
+info:
+  description: "Api server for nikx.co"
+  version: "0.0.1"
+  title: "Nikx.co API"
+  contact:
+    name: "api team."
+    url: "https://support.nikx.co"
+    email: "apiteam@nikx.co"
+  license:
+    name: "MIT"
+    url: "http://opensource.org/licenses/MIT"
+host: "api.nikx.co"
+basePath: "/v1"
+schemes:
+- "http"
+- "https"
+paths:
+  /user:
+    get:
+      tags:
+      - "user"
+      summary: "Fetch user info."
+      description: "Send GET request to fetch currently logged-in user details"
+      operationId: "userGET"
+      parameters: []
+      responses:
+        200:
+          description: "Return user details."
+      x-swagger-router-controller: "User"
+  /tokensignin:
+    post:
+      tags:
+      - "authentication"
+      summary: ""
+      description: ""
+      operationId: "tokensigninPOST"
+      consumes:
+      - "text/plain; charset=utf-8"
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "token"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        405:
+          description: "Invalid input"
+        429:
+          description: "Too many requests"
+      x-swagger-router-controller: "Authentication"
+definitions: {}

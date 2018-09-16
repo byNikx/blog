@@ -18,8 +18,6 @@ declare const gapi: any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
-  title = 'app';
-  private GoogleAuth: any;
 
   @ViewChild(MatSidenavContent) body: ElementRef;
   @ViewChild('topBar') private topBar: MatToolbar;
@@ -49,10 +47,27 @@ export class AppComponent implements AfterViewInit {
     });
 
     authenticationService.google.onUserChange(user => {
-      authenticationService.currentUser = user;
-      this.changeDetectorRef.detectChanges();
+
+      // Getting currently signed in user's ID token provided by google
+      const token = authenticationService.google.currentUser.getAuthResponse();
+      if (token.id_token) {
+        this.authenticationService.tokenSignIn(token.id_token).toPromise().then(verifiedUser => {
+          this.authenticationService.currentUser = verifiedUser;
+          this.changeDetectorRef.detectChanges();
+        }).catch(error => {
+          this.notification.show.snackbar(error.message);
+        });
+      } else {
+        console.log('logged out!');
+      }
+
     });
   }
+
+  get sideNavMode(): string {
+    return this.layout.media.isActive('gt-sm') ? 'side' : 'over';
+  }
+
 
   signIn() {
     this.authenticationService.google.signIn().then(user => {
@@ -63,12 +78,13 @@ export class AppComponent implements AfterViewInit {
   }
 
   signOut() {
-    this.authenticationService.google.signOut().then(user => {
+    this.authenticationService.google.signOut().then(status => {
       this.notification.show.snackbar('Signed out successfully!');
     }).catch(error => {
       this.notification.show.snackbar('Something went wrong.', 'Sign out');
     });
   }
+
 
 
 
