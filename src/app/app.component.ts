@@ -69,22 +69,6 @@ export class AppComponent implements AfterViewInit {
   }
 
 
-  signIn() {
-    this.authenticationService.google.signIn().then(user => {
-      this.notification.show.snackbar('Signed in successfully!');
-    }).catch(error => {
-      const a = this.notification.show.snackbar('Something went wrong.', 'Try again');
-    });
-  }
-
-  signOut() {
-    this.authenticationService.google.signOut().then(status => {
-      this.notification.show.snackbar('Signed out successfully!');
-    }).catch(error => {
-      this.notification.show.snackbar('Something went wrong.', 'Sign out');
-    });
-  }
-
 
 
 

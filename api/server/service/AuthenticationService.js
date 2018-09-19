@@ -9,8 +9,8 @@ const authImplementation = require('../../implementation/authentication.implemen
  * token String 
  * no response value expected for this operation
  **/
-exports.tokensigninPOST = function(token) {
-    return new Promise(function(resolve, reject) {
+exports.tokensigninPOST = function (token) {
+    return new Promise(function (resolve, reject) {
         authImplementation.verify(token).then(info => {
             const user = {
                 id: info.sub,
@@ -19,7 +19,8 @@ exports.tokensigninPOST = function(token) {
                 lastName: info.lastName,
                 email: info.email,
                 emailVerified: info.email_verified,
-                avatar: info.picture
+                avatar: info.picture,
+                signedIn: true
             };
             resolve(user);
         }).catch(error => {

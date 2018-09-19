@@ -1,11 +1,12 @@
+@import '../../../../_util';
+
 :host{
     position: relative;
     .search-wrap{
         opacity: .7;
         border: 1px solid rgba(0,0,0,.1);
         background-color: #fff;
-        height: 2.7rem;
-        border-radius: 2rem;
+        border-radius: .3rem;
         padding-right: .2rem;
         transition: 150ms ease-out;
 
@@ -20,6 +21,9 @@
             display: block;
             border: none;
             font-size: 1.1rem;
+        }
+        mat-icon{
+            color: $primary-text-color;
         }
     }
 }

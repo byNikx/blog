@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { UtilityService } from '../utility.service';
+import { User } from '../../app.models';
+import { NotificationService } from '../notification/notification.service';
 declare enum GoogleAuthentication {
 
   // The user closed the popup before finishing the sign in flow.
@@ -19,18 +21,6 @@ declare enum GoogleAuthentication {
 
 }
 
-
-
-
-interface User {
-  id: string;
-  name: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  emailVerified: boolean;
-  avatar: string;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -137,7 +127,8 @@ export class AuthenticationService {
 
   constructor(
     private http: HttpClient,
-    private util: UtilityService
+    private util: UtilityService,
+    private notification: NotificationService
   ) {
 
   }
@@ -145,7 +136,7 @@ export class AuthenticationService {
   /**
    * Sign in user with token
    * API end point: /tokensignin
-   * @param token 
+   * @param token
    */
   tokenSignIn(token: string): Observable<any> {
     if (!token) {
@@ -158,9 +149,21 @@ export class AuthenticationService {
     return this.http.post(url, token);
   }
 
-  onSignInSuccess(user: User) {
-    this.isSignedIn = this.google.isSignedIn();
-    this.currentUser = user;
+  signIn() {
+    this.google.signIn().then(user => {
+      this.notification.show.snackbar('Signed in successfully!');
+    }).catch(error => {
+      const a = this.notification.show.snackbar('Something went wrong.', 'Try again');
+    });
+  }
+
+  signOut() {
+    this.google.signOut().then(status => {
+      this.currentUser = null;
+      this.notification.show.snackbar('Signed out successfully!');
+    }).catch(error => {
+      this.notification.show.snackbar('Something went wrong.', 'Sign out');
+    });
   }
 
 }

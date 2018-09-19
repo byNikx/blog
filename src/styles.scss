@@ -4,6 +4,9 @@
 @import 'util';
 @import 'node_modules/highlight.js/styles/railscasts.css';
 
+*{
+	outline: none;
+}
 body, html{
 	height: 100%;
 	-webkit-font-smoothing: antialiased;

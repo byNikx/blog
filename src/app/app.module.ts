@@ -32,7 +32,8 @@ import { MarkdownPipe } from './components/markdown-editor/markdown.pipe';
 import { MarkdownPreviewDirective } from './components/markdown-editor/markdown-preview.directive';
 import { ViewerComponent } from './components/post/viewer/viewer.component';
 import { CodeViewerComponent } from './components/code-viewer/code-viewer.component';
-import { SharingComponent } from './components/widgets/sharing/sharing.component';
+import { SharingComponent } from './widgets/sharing/sharing.component';
+import { ToolbarSigninComponent } from './components/signin-flow/toolbar-signin/toolbar-signin.component';
 
 declare const gapi: any;
 
@@ -111,6 +112,7 @@ export function initializeAuthentication(authenticationService: AuthenticationSe
     ViewerComponent,
     CodeViewerComponent,
     SharingComponent,
+    ToolbarSigninComponent,
   ],
   imports: [
     ...MAT_MODULES,
