@@ -14,10 +14,12 @@
       <nx-search-bar-top></nx-search-bar-top>
     </section> -->
     <mat-nav-list>
-      <mat-list-item *ngIf="authenticationService.isSignedIn && authenticationService.currentUser" class="active-avatar" disableRipple>
+      <mat-list-item *ngIf="authenticationService.isSignedIn && authenticationService.currentUser" class="active-avatar"
+        disableRipple>
         <img matListAvatar [src]="authenticationService.currentUser.avatar" [alt]="authenticationService.currentUser.name" />
       </mat-list-item>
-      <mat-list-item *ngIf="authenticationService.isSignedIn && authenticationService.currentUser" class="user-info" disableRipple>
+      <mat-list-item *ngIf="authenticationService.isSignedIn && authenticationService.currentUser" class="user-info"
+        disableRipple>
         <h1 matLine class="active-name" [innerText]="authenticationService.currentUser.name"></h1>
         <p matLine [innerText]="authenticationService.currentUser.email"></p>
         <button mat-icon-button>
@@ -70,8 +72,15 @@
           <mat-icon>menu</mat-icon>
         </button>
         <span>App</span>
+        <span></span>
         <span fxFlex></span>
         <nx-search-bar-top></nx-search-bar-top>
+        <button mat-icon-button>
+          <mat-icon matBadge="15" matBadgeColor="accent">notifications</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon>more_vert</mat-icon>
+        </button>
         <nx-toolbar-signin></nx-toolbar-signin>
       </mat-toolbar-row>
     </mat-toolbar>

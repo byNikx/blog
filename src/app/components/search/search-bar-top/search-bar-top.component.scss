@@ -2,20 +2,24 @@
 
 :host{
     position: relative;
+    border-radius: 2rem;
     .search-wrap{
         opacity: .7;
         border: 1px solid rgba(0,0,0,.1);
         background-color: #fff;
         border-radius: 2rem;
-        padding-right: .2rem;
+        padding-left: 1.6rem;
         transition: 150ms ease-out;
 
-        &:hover{
+        &:hover, &.active{
             opacity: 1;
         }
         input[type=text]{
+            height: 2.2rem;
+            padding-right: 2rem;
             outline: none;
-            padding-left: 1rem;
+            padding-left: 1.2rem;
+            width: 130px;
             border-top-right-radius: 2rem;
             border-bottom-right-radius: 2rem;
             display: block;
