@@ -21,6 +21,8 @@ export class AppComponent implements AfterViewInit {
 
   @ViewChild(MatSidenavContent) body: ElementRef;
   @ViewChild('topBar') private topBar: MatToolbar;
+  public spacer = '';
+
   constructor(
     public layout: LayoutService,
     private scrollService: ScrollService,
@@ -93,6 +95,11 @@ export class AppComponent implements AfterViewInit {
     // });
   }
 
-
+  searchActive() {
+    this.spacer = 'none';
+  }
+  searchInactive() {
+    this.spacer = '';
+  }
 
 }

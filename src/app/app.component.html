@@ -73,8 +73,8 @@
         </button>
         <span>App</span>
         <span></span>
-        <span fxFlex></span>
-        <nx-search-bar-top></nx-search-bar-top>
+        <span [fxFlex]="spacer" style="transition:flex .2s;"></span>
+        <nx-search-bar-top (focus)="searchActive()" (blur)="searchInactive()"></nx-search-bar-top>
         <button mat-icon-button>
           <mat-icon matBadge="15" matBadgeColor="accent">notifications</mat-icon>
         </button>
