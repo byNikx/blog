@@ -14,19 +14,6 @@
       <nx-search-bar-top></nx-search-bar-top>
     </section> -->
     <mat-nav-list>
-      <mat-list-item *ngIf="authenticationService.isSignedIn && authenticationService.currentUser" class="active-avatar"
-        disableRipple>
-        <img matListAvatar [src]="authenticationService.currentUser.avatar" [alt]="authenticationService.currentUser.name" />
-      </mat-list-item>
-      <mat-list-item *ngIf="authenticationService.isSignedIn && authenticationService.currentUser" class="user-info"
-        disableRipple>
-        <h1 matLine class="active-name" [innerText]="authenticationService.currentUser.name"></h1>
-        <p matLine [innerText]="authenticationService.currentUser.email"></p>
-        <button mat-icon-button>
-          <mat-icon>arrow_drop_down</mat-icon>
-        </button>
-      </mat-list-item>
-      <mat-divider *ngIf="authenticationService.isSignedIn"></mat-divider>
       <mat-list-item routerLink="/home" routerLinkActive="active">
         <mat-icon matListIcon>home</mat-icon>
         <span matLine>Home</span>
@@ -67,21 +54,26 @@
   </mat-sidenav>
   <mat-sidenav-content cdkScrollable fxLayout="column">
     <mat-toolbar color="primary" class="mat-elevation-z4" style="z-index: 2; position: fixed; box-sizing: border-box; width: calc(100% - 296px)">
-      <mat-toolbar-row fxLayoutGap="1rem" fxLayoutAlign="start center">
-        <button mat-icon-button (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-        <span>App</span>
-        <span></span>
-        <span [fxFlex]="spacer" style="transition:flex .2s;"></span>
-        <nx-search-bar-top (focus)="searchActive()" (blur)="searchInactive()"></nx-search-bar-top>
-        <button mat-icon-button>
-          <mat-icon matBadge="15" matBadgeColor="accent">notifications</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <nx-toolbar-signin></nx-toolbar-signin>
+      <mat-toolbar-row fxLayoutGap="1.5rem" fxLayoutAlign="space-between center">
+        <section fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="end center">
+          <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span>Blog <span class="mat-caption"> beta</span></span>
+        </section>
+
+        <!-- <span [fxFlex]="spacer" style="transition:flex .2s;"></span> -->
+        <section fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign="end center" fxFlex>
+          <nx-search-bar-top (focus)="searchActive()" (blur)="searchInactive()"></nx-search-bar-top>
+          <button mat-icon-button>
+            <mat-icon matBadgeColor="accent">notifications_none</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <nx-toolbar-signin></nx-toolbar-signin>
+
+        </section>
       </mat-toolbar-row>
     </mat-toolbar>
     <section class="sidenav-content" fxLayout="column" fxFlex style=" padding-top: 60px;">

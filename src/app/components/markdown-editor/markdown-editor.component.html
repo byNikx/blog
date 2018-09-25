@@ -2,12 +2,18 @@
   <section fxFlex fxLayout="row">
     <section fxFlex>
       <section>
-        <mat-toolbar>
-          EDITOR
+        <mat-toolbar fxLayoutAlign="space-between center">
+          <span>EDITOR</span>
         </mat-toolbar>
       </section>
       <mat-divider></mat-divider>
       <section class="editor-panel mat-body-1" #editorPanel></section>
+      <section class="bottom-action-panel" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="1rem">
+        <button mat-stroked-button>CLEAR</button>
+        <button mat-raised-button color="accent">
+          PUBLISH
+        </button>
+      </section>
     </section>
     <section fxFlex fxLayout="column">
       <section>

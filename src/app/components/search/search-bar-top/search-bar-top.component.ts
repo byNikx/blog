@@ -23,12 +23,23 @@ export class SearchBarTopComponent implements OnInit {
     return this._searchContainer.nativeElement;
   }
 
+  private _input: ElementRef;
+  @ViewChild('input') set input(element) {
+    this._input = element;
+  }
+  get input() {
+    return this._input.nativeElement;
+  }
+
   @Output('focus') focus: EventEmitter<any> = new EventEmitter();
   @Output('blur') blur: EventEmitter<any> = new EventEmitter();
 
   @HostListener('focusin', ['$event']) handleFocus(event) {
     this.renderer.addClass(this.hostElement, 'active');
     this.focus.emit(event);
+  }
+  @HostListener('click') private handleClick() {
+    this.input.focus();
   }
   @HostListener('focusout', ['$event.target']) handleBlur(event) {
     this.renderer.removeClass(this.hostElement, 'active');

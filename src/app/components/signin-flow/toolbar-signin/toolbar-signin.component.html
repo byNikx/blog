@@ -1,9 +1,49 @@
 <button mat-button *ngIf="!user?.signedIn" (click)="authenticationService.signIn()">SIGN IN</button>
 <ng-container *ngIf="user?.signedIn">
-  <button class="active-avatar" [ngStyle]="{'background-image': 'url(' + user.avatar + ')', 'background-size':'cover'}" [matMenuTriggerFor]="options"
+  <button class="active-avatar" [ngStyle]="{'background-image': 'url(' + user.avatar + ')', 'background-size':'cover'}" [matMenuTriggerFor]="userOptions"
     #activeAvatar></button>
 </ng-container>
-<mat-menu #options="matMenu">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
-</mat-menu>
+<mat-menu #userOptions="matMenu">
+    <mat-list>
+      <mat-list-item style="margin-bottom: .8rem;">
+        <img matListAvatar [src]="user?.avatar">
+        <section matLine>
+          <section class="mat-subheading-2 no-margin" style="line-height: 1rem" [innerText]="user?.name"></section>
+          <section class="mat-caption" [innerText]="user?.email"></section>
+        </section>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+    <mat-nav-list>
+      <mat-list-item>
+        <mat-icon matListIcon class="secondary-text">account_box</mat-icon>
+        <a matLine>My Account</a>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon class="secondary-text" matListIcon>settings</mat-icon>
+        <a matLine>Settings</a>
+      </mat-list-item>
+      <mat-list-item (click)="authenticationService.signOut()">
+        <mat-icon class="secondary-text" matListIcon>exit_to_app</mat-icon>
+        <a matLine>Sign out</a>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <mat-icon class="secondary-text" matListIcon>brightness_2</mat-icon>
+        <a matLine>Night Mode</a>
+        <mat-slide-toggle></mat-slide-toggle>
+      </mat-list-item>
+      <mat-list-item (click)="fullscreen()">
+        <mat-icon class="secondary-text" matListIcon [innerHTML]="isFullscreen?'fullscreen_exit':'fullscreen'"></mat-icon>
+        <a matLine>{{isFullscreen?'Exit ':'Enable'}}Fullscreen</a>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon class="secondary-text" matListIcon>help</mat-icon>
+        <a matLine>Help</a>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon class="secondary-text" matListIcon>feedback</mat-icon>
+        <a matLine>Feedback</a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-menu>
