@@ -48,6 +48,14 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit, OnDestroy
     return this._previewPanel.nativeElement;
   }
 
+  private _disabled: boolean = true;
+  set disabled(disabled: boolean) {
+    this._disabled = disabled;
+  }
+  get disabled(): boolean {
+    return this._disabled;
+  }
+
 
   constructor(private markdownService: MarkdownService, private renderer: Renderer2) {
   }
@@ -58,7 +66,9 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit, OnDestroy
   ngAfterViewInit() {
     this.editorPanel.contentEditable = true;
     this.editorPanelInputListener = this.renderer.listen(this.editorPanel, 'input', (event) => {
-      this.markdownService.setMarkdownString(event.target.innerText);
+      const input = event.target.innerText;
+      this.markdownService.markdownString = input;
+      this.disabled = input.length <= 0;
       window.localStorage.setItem('markdownString', event.target.innerText);
     });
   }

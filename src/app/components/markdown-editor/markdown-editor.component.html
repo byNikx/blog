@@ -9,8 +9,8 @@
       <mat-divider></mat-divider>
       <section class="editor-panel mat-body-1" #editorPanel></section>
       <section class="bottom-action-panel" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="1rem">
-        <button mat-stroked-button>CLEAR</button>
-        <button mat-raised-button color="accent">
+        <button mat-button [disabled]="disabled">CLEAR</button>
+        <button mat-raised-button color="accent" [disabled]="disabled">
           PUBLISH
         </button>
       </section>

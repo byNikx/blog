@@ -10,6 +10,7 @@
   "author": "Nikx Fabrizio",
   "license": "ISC",
   "dependencies": {
-    "google-auth-library": "^2.0.0"
+    "google-auth-library": "^2.0.0",
+    "mongodb": "^3.1.6"
   }
 }
