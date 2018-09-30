@@ -13,7 +13,7 @@ export class ToolbarSigninComponent implements OnInit {
   @ViewChild('activeAvatar') private activeAvatar: ElementRef;
 
   constructor(
-    private authenticationService: AuthenticationService,
+    public authenticationService: AuthenticationService,
     private sanitizer: DomSanitizer
   ) {
 

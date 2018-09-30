@@ -1,0 +1,116 @@
+openapi: "3.0.0"
+
+
+info:
+  title: "Blog API"
+  version: "0.0.1"
+
+
+servers:
+
+  - url: "http://localhost:{port}{basePath}"
+    description: "Development server local"
+    variables:
+      port:
+        enum: 
+          - "8080"
+          - "5000"
+          - "3000"
+        default: "5000"
+      basePath: 
+        default: "/v1"
+
+  - url: "http://api.nikx.co{basePath}"
+    description: "Production environment"
+    variables:
+      basePath:
+        default: "/v1"
+
+
+components:
+  headers:
+    Access-Control-Allow-Origin:
+      schema:
+        type: "string"
+    Access-Control-Allow-Credentials:
+      schema:
+        type: "string"
+    Access-Control-Allow-Methods:
+      schema:
+        type: "string"
+    Access-Control-Allow-Headers:
+      schema:
+        type: "string"
+        
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    
+  schemas:
+    # Schema for error response body
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+
+
+paths:
+  /tokensignin:
+    post:
+      description: ""
+      requestBody:
+        description: ""
+        content: "text/plain; charset=utf-8":
+            schema:
+              type: "string"
+          "application/x-www-form-urlencoded":
+            schema:
+              type: "string"
+      responses: 200:
+          description: "Signin successful"
+
+          headers: "Access-Control-Allow-Origin":
+              schema:
+                $ref: "#/components/headers/Access-Control-Allow-Origin"
+            "Access-Control-Allow-Headers":
+              schema:
+                $ref: "#/components/headers/Access-Control-Allow-Headers"
+                
+          content: "application/json":
+              schema:
+                type: "object"
+                properties:
+                  id:
+                    type: "string"
+                    description: "Logged in user's unique ID"
+                  name:
+                    type: "string"
+                  firstName:
+                    type: "string"
+                  lastName: 
+                    type: "string"
+                  email: 
+                    type: "string"
+                    format: "email"
+                  emailVerified:
+                    type: "boolean"
+                  avatar:
+                    type: "string"
+                  signedIn:
+                    type: "string"
