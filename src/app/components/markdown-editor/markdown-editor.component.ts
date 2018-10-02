@@ -47,16 +47,9 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit, OnDestroy
   editorInstance: any;
   markdownText: FormControl;
   post: FormGroup;
-  // private _editorPanel: ElementRef;
   private _previewPanel: ElementRef;
   private postFormListener: Subscription;
 
-  // @ViewChild('editorPanel') set editorPanel(panel) {
-  //   this._editorPanel = panel;
-  // }
-  // get editorPanel() {
-  //   return this._editorPanel.nativeElement;
-  // }
 
   @ViewChild('preview') set previewPanel(panel) {
     this._previewPanel = panel;
@@ -88,6 +81,9 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   ngOnDestroy(): void {
+    if (this.postFormListener) {
+      this.postFormListener.unsubscribe();
+    }
   }
 
   setPostCategory(category): void {

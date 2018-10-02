@@ -34,7 +34,19 @@ export class PostCategoryService {
     }, {
       parent: null,
       id: 3,
-      name: 'Entertainment & Gossip'
+      name: 'Arts & Entertainment'
+    }, {
+      parent: null,
+      id: 4,
+      name: 'Culture'
+    }, {
+      parent: null,
+      id: 5,
+      name: 'Humor'
+    }, {
+      parent: null,
+      id: 6,
+      name: 'Entrepreneurship'
     }]);
     //    return this.http.get<Category[]>('');
   }
