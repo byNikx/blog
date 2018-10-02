@@ -10,7 +10,7 @@ import {
 	MatMenuModule, MatProgressBarModule, MatChipsModule,
 	MatButtonToggleModule, MatInputModule, MatSlideToggleModule,
 	MatAutocompleteModule, MatPaginatorModule, MatBadgeModule,
-	MatSnackBarModule
+	MatSnackBarModule,
 } from '@angular/material';
 
 export const MAT_MODULES = [

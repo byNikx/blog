@@ -3,8 +3,7 @@ import { NgModule, APP_INITIALIZER, LOCALE_ID, ApplicationRef } from '@angular/c
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MAT_MODULES } from './material/material.module';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { MAT_MODULES } from './modules/material/material.module';
 
 /**
  * Environment variables
@@ -34,6 +33,8 @@ import { ViewerComponent } from './components/post/viewer/viewer.component';
 import { CodeViewerComponent } from './components/code-viewer/code-viewer.component';
 import { SharingComponent } from './widgets/sharing/sharing.component';
 import { ToolbarSigninComponent } from './components/signin-flow/toolbar-signin/toolbar-signin.component';
+import { PostCategoryService } from './services/post-category/post-category.service';
+import { Category } from './app.models';
 
 declare const gapi: any;
 
@@ -98,6 +99,23 @@ export function initializeAuthentication(authenticationService: AuthenticationSe
     });
   };
 }
+
+export function initializePostCategory(postCategoryService: PostCategoryService): Function {
+  return () => new Promise((resolve, reject) => {
+    postCategoryService
+      .getPostCategories()
+      .toPromise()
+      .then((categories: Category[]) => {
+        postCategoryService.postCategories = categories;
+        resolve();
+      })
+      .catch(e => {
+        console.warn('Unable to initialize post categories', e);
+        resolve();
+      });
+  });
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -133,7 +151,15 @@ export function initializeAuthentication(authenticationService: AuthenticationSe
         HttpClient
       ],
       multi: true
-    }
+    }, {
+      provide: APP_INITIALIZER,
+      useFactory: initializePostCategory,
+      deps: [
+        PostCategoryService,
+        HttpClient
+      ],
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

@@ -9,7 +9,10 @@ import { ViewerComponent } from './components/post/viewer/viewer.component';
 
 const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'editor', component: MarkdownEditorComponent },
+  {
+    path: 'editor',
+    component: MarkdownEditorComponent
+  },
   { path: 'post/:id', component: ViewerComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
   { path: '*', redirectTo: '404' }

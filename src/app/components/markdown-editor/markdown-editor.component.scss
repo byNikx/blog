@@ -2,9 +2,8 @@
 :host{
     ::ng-deep{
     .editor-panel, .preview-panel{
-        overflow: auto;
-        padding: 1rem;
-        margin: 1rem;
+        overflow: auto1;
+        padding: 1.5rem;
         border: 1px solid rgba(0,0,0,.1);
         border-radius: .2rem;
     }
@@ -16,12 +15,21 @@
     }
 
     .editor-panel{
-        background-color: #fff;
+        background-color: #fff; 
         outline: none;
-        resize: none;
+        display: block;
+
+        .title, .text, .category{
+            border: none;
+        }
+
+        .title{
+            min-height: 70px;
+            overflow: hidden;
+        }
     }
     .bottom-action-panel{
-        margin: 1rem;
+        margin-top: 1rem;
     }
     
 }

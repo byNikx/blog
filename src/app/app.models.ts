@@ -8,3 +8,9 @@ export interface User {
     avatar: string;
     signedIn: boolean;
 }
+
+export interface Category {
+    parent: number | null;
+    id: number;
+    name: string;
+}

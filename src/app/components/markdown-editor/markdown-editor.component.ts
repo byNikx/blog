@@ -1,6 +1,22 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2, OnDestroy } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  Renderer2,
+  OnDestroy
+} from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators
+} from '@angular/forms';
+
 import { MarkdownService } from '../markdown-editor/markdown.service';
+import { Subscription } from 'rxjs';
+import { PostCategoryService } from '../../services/post-category/post-category.service';
 
 declare const window: any;
 
@@ -30,16 +46,17 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit, OnDestroy
   ];
   editorInstance: any;
   markdownText: FormControl;
-  private _editorPanel: ElementRef;
+  post: FormGroup;
+  // private _editorPanel: ElementRef;
   private _previewPanel: ElementRef;
-  private editorPanelInputListener: Function;
+  private postFormListener: Subscription;
 
-  @ViewChild('editorPanel') set editorPanel(panel) {
-    this._editorPanel = panel;
-  }
-  get editorPanel() {
-    return this._editorPanel.nativeElement;
-  }
+  // @ViewChild('editorPanel') set editorPanel(panel) {
+  //   this._editorPanel = panel;
+  // }
+  // get editorPanel() {
+  //   return this._editorPanel.nativeElement;
+  // }
 
   @ViewChild('preview') set previewPanel(panel) {
     this._previewPanel = panel;
@@ -48,33 +65,35 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit, OnDestroy
     return this._previewPanel.nativeElement;
   }
 
-  private _disabled: boolean = true;
-  set disabled(disabled: boolean) {
-    this._disabled = disabled;
-  }
-  get disabled(): boolean {
-    return this._disabled;
-  }
-
-
-  constructor(private markdownService: MarkdownService, private renderer: Renderer2) {
+  constructor(
+    private markdownService: MarkdownService,
+    private renderer: Renderer2,
+    private formBuilder: FormBuilder,
+    public postCategoryService: PostCategoryService
+  ) {
+    this.post = this.formBuilder.group({
+      category: new FormControl('', Validators.compose([Validators.required])),
+      title: new FormControl('', Validators.compose([Validators.required])),
+      text: new FormControl('', Validators.compose([Validators.required]))
+    });
   }
   ngOnInit() {
-
-  }
-
-  ngAfterViewInit() {
-    this.editorPanel.contentEditable = true;
-    this.editorPanelInputListener = this.renderer.listen(this.editorPanel, 'input', (event) => {
-      const input = event.target.innerText;
-      this.markdownService.markdownString = input;
-      this.disabled = input.length <= 0;
-      window.localStorage.setItem('markdownString', event.target.innerText);
+    this.postFormListener = this.post.valueChanges.subscribe(post => {
+      this.markdownService.markdownString = post.text;
+      window.localStorage.setItem('markdownString', post.text);
     });
   }
 
-  ngOnDestroy() {
-    this.editorPanelInputListener();
+  ngAfterViewInit(): void {
+  }
+
+  ngOnDestroy(): void {
+  }
+
+  setPostCategory(category): void {
+    this.post.patchValue({
+      category: category.name
+    });
   }
 
 }
