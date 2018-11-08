@@ -22,6 +22,7 @@ exports.tokensigninPOST = function (token) {
                 avatar: info.picture,
                 signedIn: true
             };
+            
             resolve(user);
         }).catch(error => {
             reject({ message: 'unable to verify!' });
