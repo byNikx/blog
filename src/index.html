@@ -1,71 +1,14 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <title>Blog</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#3f51b5">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-  <script src="https://apis.google.com/js/platform.js"></script>
 </head>
-
 <body>
-  <app-root>
-    <style>
-      .splash-screen {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    		height: 100%;
-      }
-
-      .spinner {
-        height: 100px;
-        width: 100px;
-        animation: rotate 2s linear infinite;
-        transform-origin: center center;
-        position: absolute;
-        margin: auto;
-      }
-
-      .spinner .path {
-          stroke-dasharray: 1, 100;
-          stroke-dashoffset: 0;
-          animation: dash 1.5s ease-in-out infinite;
-          stroke-linecap: round;
-          stroke: rgb(24, 21, 204);
-      }  
-      @keyframes rotate {
-          100% {
-            transform: rotate(360deg);
-          }
-      }
-      @keyframes dash {
-          0% {
-            stroke-dasharray: 1, 100;
-            stroke-dashoffset: 0;
-          }
-          50% {
-            stroke-dasharray: 89, 100;
-            stroke-dashoffset: -35px;
-          }
-          100% {
-            stroke-dasharray: 89, 100;
-            stroke-dashoffset: -124px;
-          }
-      }
-    </style>
-    <section class="splash-screen">
-      <img src="assets/splash-loader.svg"/>
-    </section>
-  </app-root>
+  <app-root></app-root>
 </body>
-
 </html>

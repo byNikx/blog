@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "nx",
+      "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"
@@ -27,18 +27,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/froala-editor/css/froala_editor.pkgd.min.css",
-              "node_modules/froala-editor/css/froala_style.min.css",
-              "node_modules/font-awesome/css/font-awesome.css",
-              "node_modules/quill/dist/quill.core.css",
-              "node_modules/quill/dist/quill.bubble.css",
-              "node_modules/quill/dist/quill.snow.css"
+              "src/styles.scss"
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/froala-editor/js/froala_editor.pkgd.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -56,7 +47,14 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
@@ -111,6 +109,7 @@
     "blog-e2e": {
       "root": "e2e/",
       "projectType": "application",
+      "prefix": "",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
